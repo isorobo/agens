@@ -54,7 +54,25 @@
 
 ## Traceability
 
-<!-- Filled by the roadmapper — maps each REQ-ID to the phase that delivers it. -->
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| SETUP-01 | Phase 0 | Pending |
+| RECOMMEND-01 | Phase 1 | Pending |
+| RECOMMEND-02 | Phase 1 | Pending |
+| RECOMMEND-03 | Phase 1 | Pending |
+| RECOMMEND-04 | Phase 1 | Pending |
+| RECOMMEND-05 | Phase 1 | Pending |
+| RECOMMEND-06 | Phase 1 | Pending |
+| RECOMMEND-07 | Phase 1 | Pending |
+| DELEGATE-01 | Phase 2 | Pending |
+| DELEGATE-02 | Phase 2 | Pending |
+| LOG-01 | Phase 4 | Pending |
+| LOG-02 | Phase 4 | Pending |
+
+**v1 coverage:** 12/12 requirements mapped. No orphans.
+
+**v2 (deferred, not counted in v1 coverage):** BUILD-01, BUILD-02 → Phase 3 (agens-build); RECOMMEND-08, RECOMMEND-09, LOG-03 → v1.x.
 
 ---
 *Requirements defined: 2026-07-11*
+*Traceability mapped: 2026-07-11*
