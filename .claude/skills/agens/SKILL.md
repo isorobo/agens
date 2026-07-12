@@ -77,3 +77,74 @@ match from free-text input.
 Proceed straight to matching once the four answers return. Do not echo the
 answers back for a separate confirmation turn; the tool already shows the user's
 selections before submission.
+
+## Step 2: Match the answers to a candidate pattern, then verify
+
+### 2a. Choose one candidate pattern
+
+Map the Goal answer to a candidate pattern family in
+`30_Concepts/agent-patterns-index.md`, then narrow to a single bold entry whose
+Trigger the four answers satisfy. This is a semantic judgement over the note's
+entries, not a literal search for the Goal label:
+
+- **Answer questions over data** → Knowledge Retrieval (RAG)
+- **Orchestrate multiple specialists** → Multi-Agent Collaboration, or Routing when the job is classifying and directing input
+- **Automate a multi-step task** → Planning, or Prompt Chaining for a fixed step sequence
+- **Summarise/transform content** → Prompt Chaining
+
+Apply the match threshold: recommend only when a single bold entry's Trigger the
+four answers satisfy, and the Workflow, Sensitivity, and Latency answers do not
+contradict that entry. If no bold entry's Trigger fits, refuse (Step 3). If any
+dimension came back as free-text "Other", refuse.
+
+### 2b. Run the citation gate before showing anything
+
+Both checks below run BEFORE any recommendation reaches the user. Either failure
+routes to the plain refusal.
+
+1. **Path resolves.** Read or Glob the vault-relative path
+   `30_Concepts/agent-patterns-index.md`. If the call returns no content, the
+   path does not resolve — refuse. Reference the note by this vault-relative
+   path only; do not hard-code an absolute vault root.
+2. **Bold entry present.** Grep that note ONLY, matching the candidate's bold
+   `**Name**` literal anchored to the bold form — for example the pattern
+   `\*\*Routing\*\*`, not a loose `Routing` substring. A loose substring can
+   match prose or a word such as "re-routing" and pass falsely. If there is no
+   anchored hit, the pattern is not a real bold entry — refuse.
+
+## Step 3: Recommend one pattern, or refuse plainly
+
+### Recommendation (both gate checks passed)
+
+Present exactly ONE pattern. Surface no second "also consider" pattern. Include:
+
+- the pattern name;
+- the vault-relative path `30_Concepts/agent-patterns-index.md`;
+- the matched entry's Trigger and Trade-off sentences, quoted verbatim from the note.
+
+### Plain refusal (any gate check failed, no Trigger fits, or free-text "Other")
+
+Emit the fixed refusal below. Name the four searched dimensions, cite nothing,
+and offer no "closest" pattern.
+
+```
+No pattern in the wiki-agents vault matches this shape.
+
+I searched agent-patterns-index.md for a pattern whose trigger fits:
+- goal: {goal}
+- workflow: {workflow}
+- data sensitivity: {sensitivity}
+- latency/cost: {latency}
+
+None resolved. I will not cite a loosely related pattern to fill the gap.
+You could refine one of the four answers, or add a pattern note to the vault.
+```
+
+## Anti-patterns
+
+- **Decorative citation.** Never cite the index note, or a near-miss entry, "to
+  look thorough". A citation is valid only when it is a specific bold entry whose
+  Trigger the four answers satisfy.
+- **Un-gated model-knowledge recommendation.** Never recommend a pattern without
+  the Step 2b Read+Grep gate passing. Recommending from model recall alone
+  destroys agens' core value — a grounded, verifiable citation every time.
