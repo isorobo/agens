@@ -60,8 +60,8 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 01-01-PLAN.md — Recommend/refuse spine: dual-invocation SKILL.md, four-question questionnaire, Read+Grep citation gate, plain refusal
-- [ ] 01-02-PLAN.md — Define the agent-authored tagging convention for Phase 4 to enforce
+- [x] 01-01-PLAN.md — Recommend/refuse spine: dual-invocation SKILL.md, four-question questionnaire, Read+Grep citation gate, plain refusal
+- [x] 01-02-PLAN.md — Define the agent-authored tagging convention for Phase 4 to enforce
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -119,6 +119,6 @@ Phases execute in numeric order: 0 → 1 → 2 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 0. Vault Consolidation | 1/1 | Complete   | 2026-07-12 |
-| 1. agens (Read-Only Recommend) | 0/3 | Not started | - |
+| 1. agens (Read-Only Recommend) | 2/3 | In Progress|  |
 | 2. Delegation Wiring | 0/TBD | Not started | - |
 | 4. agens-log (Append-Only Logging) | 0/TBD | Not started | - |
