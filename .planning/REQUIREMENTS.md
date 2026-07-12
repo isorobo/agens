@@ -8,13 +8,13 @@
 
 ### Recommend (read-only core)
 
-- [ ] **RECOMMEND-01**: User can invoke agens via an explicit slash command.
-- [ ] **RECOMMEND-02**: User can invoke agens via auto-trigger, without a command, when conversation naturally describes a new agent project.
-- [ ] **RECOMMEND-03**: User answers a fixed four-dimension questionnaire (goal, workflow shape, data sensitivity, latency/cost) before agens gives any recommendation.
-- [ ] **RECOMMEND-04**: User receives a pattern recommendation that cites a specific, resolvable wiki-agents note path, with the supporting passage quoted alongside it.
-- [ ] **RECOMMEND-05**: agens verifies the cited path exists and the recommended pattern actually appears in it before returning the recommendation to the user.
-- [ ] **RECOMMEND-06**: agens refuses to recommend, and says so plainly, when no vault note supports the described project's shape — it does not paper over the gap with a loosely related citation.
-- [ ] **RECOMMEND-07**: Every note agens writes into the vault is tagged as agent-authored, distinguishing it from the user's own writing.
+- [x] **RECOMMEND-01**: User can invoke agens via an explicit slash command.
+- [x] **RECOMMEND-02**: User can invoke agens via auto-trigger, without a command, when conversation naturally describes a new agent project.
+- [x] **RECOMMEND-03**: User answers a fixed four-dimension questionnaire (goal, workflow shape, data sensitivity, latency/cost) before agens gives any recommendation.
+- [x] **RECOMMEND-04**: User receives a pattern recommendation that cites a specific, resolvable wiki-agents note path, with the supporting passage quoted alongside it.
+- [x] **RECOMMEND-05**: agens verifies the cited path exists and the recommended pattern actually appears in it before returning the recommendation to the user.
+- [x] **RECOMMEND-06**: agens refuses to recommend, and says so plainly, when no vault note supports the described project's shape — it does not paper over the gap with a loosely related citation.
+- [x] **RECOMMEND-07**: Every note agens writes into the vault is tagged as agent-authored, distinguishing it from the user's own writing.
 
 ### Delegate
 
@@ -57,13 +57,13 @@
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | SETUP-01 | Phase 0 | Complete |
-| RECOMMEND-01 | Phase 1 | Pending |
-| RECOMMEND-02 | Phase 1 | Pending |
-| RECOMMEND-03 | Phase 1 | Pending |
-| RECOMMEND-04 | Phase 1 | Pending |
-| RECOMMEND-05 | Phase 1 | Pending |
-| RECOMMEND-06 | Phase 1 | Pending |
-| RECOMMEND-07 | Phase 1 | Pending |
+| RECOMMEND-01 | Phase 1 | Verified |
+| RECOMMEND-02 | Phase 1 | Verified |
+| RECOMMEND-03 | Phase 1 | Verified |
+| RECOMMEND-04 | Phase 1 | Verified |
+| RECOMMEND-05 | Phase 1 | Verified |
+| RECOMMEND-06 | Phase 1 | Verified |
+| RECOMMEND-07 | Phase 1 | Verified |
 | DELEGATE-01 | Phase 2 | Pending |
 | DELEGATE-02 | Phase 2 | Pending |
 | LOG-01 | Phase 4 | Pending |
