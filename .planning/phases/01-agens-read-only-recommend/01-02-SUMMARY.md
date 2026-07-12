@@ -92,6 +92,13 @@ None - no external service configuration required.
 - The convention Phase 4 (agens-log, LOG-01) enforces is defined and greppable.
 - No vault file was created or modified; the sequencing constraint (read-only ships first) holds.
 
+## Self-Check: PASSED
+
+- Convention doc exists: `.claude/skills/agens/references/agent-authored-convention.md`
+- SUMMARY exists: `.planning/phases/01-agens-read-only-recommend/01-02-SUMMARY.md`
+- Task commit present: `2e4e866`
+- Metadata commit present: `8feae27`
+
 ---
 *Phase: 01-agens-read-only-recommend*
 *Completed: 2026-07-12*
