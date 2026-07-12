@@ -25,6 +25,17 @@ The single lookup target is the vault-relative path
 grant; it references notes by vault-relative path only and hard-codes no
 absolute vault root.
 
+**Resolving the vault-relative path.** `Read` requires an absolute path and
+`Glob` searches only its `path` parameter's directory (cwd by default) — a
+bare relative path resolves against neither tool on its own. Before Step 2b,
+determine the vault root from the session's granted additional directories
+(the directory containing a `30_Concepts/` folder), then combine it with the
+vault-relative path to form the absolute path or `Glob` `path` argument, e.g.
+`{vault_root}/30_Concepts/agent-patterns-index.md`. If no granted directory
+contains a `30_Concepts/` folder, the vault was not granted this session —
+that is itself a "path does not resolve" failure; refuse per Step 2b and tell
+the user to grant the vault via `--add-dir` or `/add-dir`.
+
 ## When to Use This Skill
 
 Use this skill when the user:
@@ -103,14 +114,20 @@ Both checks below run BEFORE any recommendation reaches the user. Either failure
 routes to the plain refusal.
 
 1. **Path resolves.** Read or Glob the vault-relative path
-   `30_Concepts/agent-patterns-index.md`. If the call returns no content, the
-   path does not resolve — refuse. Reference the note by this vault-relative
-   path only; do not hard-code an absolute vault root.
+   `30_Concepts/agent-patterns-index.md`, resolved against the vault root per
+   the resolution rule above. If the call errors (file not found), or returns
+   a file that exists but is empty, the path does not resolve — refuse.
+   Reference the note by this vault-relative path only; do not hard-code an
+   absolute vault root.
 2. **Bold entry present.** Grep that note ONLY, matching the candidate's bold
-   `**Name**` literal anchored to the bold form — for example the pattern
-   `\*\*Routing\*\*`, not a loose `Routing` substring. A loose substring can
-   match prose or a word such as "re-routing" and pass falsely. If there is no
-   anchored hit, the pattern is not a real bold entry — refuse.
+   `**Name**` literal anchored to the bold form, not a loose substring — a
+   loose substring can match prose or a word such as "re-routing" and pass
+   falsely. Escape every regex metacharacter in the candidate name, including
+   the bold `**` markers themselves plus any `(`, `)`, `.`, or `-` the name
+   contains, before using it as the Grep pattern:
+   - `Routing` → `\*\*Routing\*\*`
+   - `Knowledge Retrieval (RAG)` → `\*\*Knowledge Retrieval \(RAG\)\*\*`
+   If there is no anchored hit, the pattern is not a real bold entry — refuse.
 
 ## Step 3: Recommend one pattern, or refuse plainly
 
