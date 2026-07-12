@@ -275,8 +275,19 @@ agens' own recommendation. agens triggers the target and steps back.
 
 ### 4. Fixed failure message (Check A or Check B failed)
 
-Emit this text exactly, keeping only the `{if A}` and `{if B}` lines for whichever
-condition failed:
+Before emitting, resolve the conditional lines. Drop the literal `{if A}` and
+`{if B}` prefix tokens themselves; keep only the sentence for whichever condition
+failed, and delete the line for any condition that passed. The raw `{if A}` /
+`{if B}` markers must never reach the user. Worked cases:
+
+- **Only Check A failed:** keep the two `{if A}` lines with their prefixes removed
+  (one under `Blocking:`, one under `To proceed:`); drop both `{if B}` lines.
+- **Only Check B failed:** keep the two `{if B}` lines with their prefixes removed;
+  drop both `{if A}` lines.
+- **Both failed:** keep all four lines, each with its `{if A}` / `{if B}` prefix
+  removed.
+
+Template (prefixes shown are stripped per the rule above before sending):
 
 ```
 I route framework and SDK questions to the GSD AI-integration skill rather than
