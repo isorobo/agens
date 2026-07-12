@@ -376,17 +376,19 @@ No secrets, no untrusted network input, no SQL, no personal data enter this phas
 | A2 | Deploying agens at user level makes `${CLAUDE_SKILL_DIR}/../gsd-ai-integration-phase/SKILL.md` resolve to the installed target. | Q5 | If both a project and a user copy of agens load and the project copy wins, sibling resolution fails; the refuse-on-uncertainty backstop still protects DELEGATE-02. |
 | A3 | The `Phase:` integer under `## Current Position` is GSD's authoritative single current-phase signal, and STATE.md never represents two simultaneous active phases. | Q3, Open Questions | If GSD later adds parallel phases, the single-value read would pick one arbitrarily; out of scope this phase. |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Phase-number selection when multiple GSD phases could be the active phase (deferred question).**
    - What we know: GSD's STATE.md models a single current position — `## Current Position → Phase: N` is one integer, and plans within a phase run sequentially. This project's STATE.md carries exactly one `Phase:` value. The schema does not represent two phases mid-execution at once.
    - What is unclear: whether any real STATE.md state produces genuine ambiguity, and whether agens should ever pass a phase other than the STATE.md current one.
    - Recommendation: read the single `Phase:` integer from `## Current Position` and pass it. Treat an absent or unparseable value as a gate failure and refuse (D-05/D-06) — never enumerate `phases/` directories to guess, which would reintroduce the ambiguity the gate avoids. Do not prompt the user for a phase number this phase (adds an intake step D-08 was designed to skip). Revisit only if GSD introduces parallel phases.
+   - **RESOLVED:** Adopted as written. Plan 02-01's combined gate reads the single `Phase:` integer and refuses on absent/unparseable values; no directory enumeration.
 
 2. **Whether D-03's best-effort context is acceptable, or the plan should reshape the hand-off.**
    - What we know: the target consumes the phase `CONTEXT.md`, not invocation text (Q2).
    - What is unclear: whether the user expects the four answers to fully replace the target's own questions.
    - Recommendation: implement the best-effort background pass and note the limitation in the plan's manual-verification criteria; do not attempt to write into the target's `CONTEXT.md`, which would cross the read/delegate boundary and risk clobbering user decisions.
+   - **RESOLVED:** Adopted as written. Plan 02-01 passes the four answers as labelled background prose in the invocation string; Plan 02-02 re-verifies the limitation as a manual observation rather than a defect.
 
 ## Sources
 
