@@ -84,7 +84,7 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 02-01-PLAN.md — Author the framework-fit delegation branch (Skill grant, Step 0 detection, combined gate, invocation, fixed failure message) and deploy agens at user level
+- [x] 02-01-PLAN.md — Author the framework-fit delegation branch (Skill grant, Step 0 detection, combined gate, invocation, fixed failure message) and deploy agens at user level
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -125,5 +125,5 @@ Phases execute in numeric order: 0 → 1 → 2 → 4
 |-------|----------------|--------|-----------|
 | 0. Vault Consolidation | 1/1 | Complete   | 2026-07-12 |
 | 1. agens (Read-Only Recommend) | 3/3 | Complete   | 2026-07-12 |
-| 2. Delegation Wiring | 0/2 | Not started | - |
+| 2. Delegation Wiring | 1/2 | In Progress|  |
 | 4. agens-log (Append-Only Logging) | 0/TBD | Not started | - |
