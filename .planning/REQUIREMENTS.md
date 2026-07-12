@@ -4,7 +4,7 @@
 
 ### Vault Consolidation
 
-- [ ] **SETUP-01**: User's recommendations are grounded against one canonical concept note, not six scattered pattern sources — the wiki-agents `topic/agent-patterns` cluster is consolidated into a single note before any other phase depends on it.
+- [x] **SETUP-01**: User's recommendations are grounded against one canonical concept note, not six scattered pattern sources — the wiki-agents `topic/agent-patterns` cluster is consolidated into a single note before any other phase depends on it.
 
 ### Recommend (read-only core)
 
@@ -56,7 +56,7 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| SETUP-01 | Phase 0 | Pending |
+| SETUP-01 | Phase 0 | Complete |
 | RECOMMEND-01 | Phase 1 | Pending |
 | RECOMMEND-02 | Phase 1 | Pending |
 | RECOMMEND-03 | Phase 1 | Pending |
