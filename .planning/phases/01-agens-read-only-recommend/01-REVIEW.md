@@ -258,6 +258,17 @@ Workflow answer alone disambiguate at the Trigger-matching step, or explicitly
 state which dimension wins when Goal-implied step-shape and the stated
 Workflow answer disagree.
 
+## Resolution
+
+CR-01 and CR-02 fixed in `aedb158` (2026-07-12): `SKILL.md` now states an
+explicit vault-root resolution rule before Step 2b, folds in the WR-02
+error-vs-empty distinction, and replaces the single Grep-escaping example with
+a general escaping rule plus a parenthesised worked example
+(`Knowledge Retrieval (RAG)`).
+
+WR-01, WR-03, IN-01, and IN-02 remain open as non-blocking follow-ups —
+candidates for a future gap-closure pass before Phase 2 builds on this spine.
+
 ---
 
 _Reviewed: 2026-07-12_
