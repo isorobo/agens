@@ -13,13 +13,13 @@ Every recommendation agens gives cites a specific wiki-agents note by path, not 
 ### Validated
 
 - [x] wiki-agents' `topic/agent-patterns` cluster (6 sources) is consolidated into one canonical concept note as agens' single lookup target — Validated in Phase 0: Vault Consolidation
+- [x] User can invoke agens via an explicit slash command — Validated in Phase 1: agens (Read-Only Recommend)
+- [x] User can invoke agens via auto-trigger (Skill description matches natural project-starting language) — Validated in Phase 1: agens (Read-Only Recommend)
+- [x] agens asks a fixed questionnaire (goal, workflow shape, data sensitivity, latency/cost) for a described project — Validated in Phase 1: agens (Read-Only Recommend)
+- [x] agens recommends an agent pattern grounded in a specific wiki-agents citation — Validated in Phase 1: agens (Read-Only Recommend)
 
 ### Active
 
-- [ ] User can invoke agens via an explicit slash command
-- [ ] User can invoke agens via auto-trigger (Skill description matches natural project-starting language)
-- [ ] agens asks a fixed questionnaire (goal, workflow shape, data sensitivity, latency/cost) for a described project
-- [ ] agens recommends an agent pattern grounded in a specific wiki-agents citation
 - [ ] agens offers, but does not auto-run, MCP Builder when tooling is identified as a need
 - [ ] agens delegates framework-fit questions to `gsd-framework-selector`/`gsd-ai-integration-phase` rather than reimplementing that judgement
 - [ ] agens logs each recommendation decision append-only, mirroring the vault's own LLM-wiki `log.md` pattern
@@ -33,6 +33,7 @@ Every recommendation agens gives cites a specific wiki-agents note by path, not 
 
 ## Context
 
+- Phase 1 complete: `.claude/skills/agens/SKILL.md` gives a citation-grounded pattern recommendation from a fixed four-question intake, invoked by `/agens` or auto-trigger, and refuses plainly when the vault doesn't support the described project. 5/5 ROADMAP success criteria and 7/7 RECOMMEND requirement IDs verified — see `01-VERIFICATION.md`.
 - Built on top of the wiki-agents Obsidian vault (`C:\Users\Simon\Documents\wiki-agents`), which already documents roughly 148 notes across 26 MOCs, including a pattern taxonomy (Gulli's 21 patterns, Anthropic's Building Effective Agents workflow/agent split, the agentic AI handbook) and a graduated `topic/agent-skills` cluster (Anthropic's Claude Code Skills playbook, `google/skills`, `last30days-skill`, `davidondrej/skills`, MCP Builder, Claude API Skill).
 - The user has committed to specialising in the Anthropic ecosystem (a "one tool a week" learning strategy that landed on the Claude Agent SDK and Skills).
 - The user already runs a GSD skill family (`gsd-framework-selector`, `gsd-ai-integration-phase`, and others) for general software-project phase planning. agens is scoped specifically to agent-pattern selection, not a replacement for that family.
@@ -75,4 +76,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-12 after Phase 0: Vault Consolidation*
+*Last updated: 2026-07-12 after Phase 1: agens (Read-Only Recommend)*
