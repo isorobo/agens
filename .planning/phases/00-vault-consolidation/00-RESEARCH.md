@@ -360,17 +360,19 @@ Automated, deterministic, no Obsidian needed:
 | A2 | The Evaluator-Optimiser↔Reflection and Orchestrator-Workers↔Multi-Agent-Collaboration mappings are the intended D-07 aliases. | Crosswalk | Low — both are stated explicitly in the guide (Evaluator-Optimizer under Reflection L63; Orchestrator-Workers under Multi-Agent Collaboration L72-75). |
 | A3 | ReAct attaches to Planning (#6) and Workflow-vs-Autonomous attaches to Resource-Aware Optimisation (#16). | Two patterns link out | Medium — D-04 names both notes but not their exact host entry. The attach points are the strongest textual match; the planner may place them differently. |
 
-## Open Questions
+## Open Questions (RESOLVED)
 
-1. **`agentic-design-patterns-plain-english.md` has only `topic/agent-patterns` — removing it leaves zero topics, violating schema §2.1.**
+1. **RESOLVED — `agentic-design-patterns-plain-english.md` has only `topic/agent-patterns` — removing it leaves zero topics, violating schema §2.1.**
    - What we know: schema §2.1 requires at least one `topic` per note (L50). This guide's sole topic is `topic/agent-patterns` (L7-8).
    - What's unclear: which replacement controlled topic it should carry, or whether D-08 intended this guide to keep the tag as a second consolidated-cluster member.
    - Recommendation: the planner should add a replacement topic before removing the tag. `topic/foundations` fits (the guide is a foundational map). Flag for user confirmation, since it is not covered by D-01 through D-12.
+   - Resolution: 00-01-PLAN.md Task 2 adds `topic/foundations` to the guide's frontmatter before removing `topic/agent-patterns`, verified by acceptance criteria against the live vault file.
 
-2. **Related-concept links beyond the two D-04 notes.**
+2. **RESOLVED — Related-concept links beyond the two D-04 notes.**
    - What we know: schema §3 requires ≥3 related concepts; the guide already links to `[[memory]]`, `[[mcp]]`, `[[evaluation]]`, `[[tool-use]]`, `[[the-agent-loop]]` (all confirmed to exist).
    - What's unclear: D-04 explicitly names only ReAct and Workflow-vs-Autonomous as link-out cases. Whether the index should also cross-link the other existing concept notes is unspecified.
    - Recommendation: satisfy the §3 minimum with the two D-04 notes plus `[[the-agent-loop]]`; treat wider cross-linking as optional planner discretion within the schema rule. No user decision required.
+   - Resolution: 00-01-PLAN.md Task 1 sets `related_concepts` to exactly these three wikilinks, satisfying the §3 minimum. No further links required.
 
 ## Sources
 
