@@ -12,7 +12,8 @@ agens ships as a routing and grounding layer over capability that already exists
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [x] **Phase 0: Vault Consolidation** - Collapse the six-source `topic/agent-patterns` cluster into one canonical concept note (completed 2026-07-12)
+- [x] **Phase 0: Vault Consolidation** - Collapse the six-source `topic/agent-patterns` cluster into one canonical concept note
+ (completed 2026-07-12)
 - [ ] **Phase 1: agens (Read-Only Recommend)** - Citation-grounded pattern recommendation via questionnaire, dual invocation, and a runtime citation-resolves check
 - [ ] **Phase 2: Delegation Wiring** - Route framework-fit questions to the GSD skills via the `Skill` tool, with explicit presence checking
 - [ ] **Phase 4: agens-log (Append-Only Logging)** - Record each recommendation as an append-only, attributed entry in the vault's date-header convention
@@ -44,11 +45,13 @@ Plans:
   3. User receives a pattern recommendation that cites a resolvable wiki-agents note path with the supporting passage quoted alongside it, and agens verifies the path exists and the pattern name appears in it before returning the answer.
   4. agens refuses plainly, with no loosely related citation, when no vault note supports the described project's shape.
   5. Any note agens writes into the vault is tagged as agent-authored, distinguishing it from the user's own writing.
-**Plans**: TBD
+**Plans**: 3 plans
 **UI hint**: no
 
 Plans:
-- [ ] 01-01: TBD
+- [ ] 01-01-PLAN.md — Recommend/refuse spine: dual-invocation SKILL.md, four-question questionnaire, Read+Grep citation gate, plain refusal
+- [ ] 01-02-PLAN.md — Define the agent-authored tagging convention for Phase 4 to enforce
+- [ ] 01-03-PLAN.md — Human checkpoint: verify dual invocation, questionnaire, recommendation, and refusal live
 
 ### Phase 2: Delegation Wiring
 **Goal**: agens routes framework-fit questions to the GSD skills through the `Skill` tool rather than answering inline, and fails loudly when a target skill is absent.
@@ -94,6 +97,6 @@ Phases execute in numeric order: 0 → 1 → 2 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 0. Vault Consolidation | 1/1 | Complete   | 2026-07-12 |
-| 1. agens (Read-Only Recommend) | 0/TBD | Not started | - |
+| 1. agens (Read-Only Recommend) | 0/3 | Not started | - |
 | 2. Delegation Wiring | 0/TBD | Not started | - |
 | 4. agens-log (Append-Only Logging) | 0/TBD | Not started | - |
