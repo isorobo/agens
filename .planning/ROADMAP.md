@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
  (completed 2026-07-12)
 
 - [x] **Phase 1: agens (Read-Only Recommend)** - Citation-grounded pattern recommendation via questionnaire, dual invocation, and a runtime citation-resolves check (completed 2026-07-12)
-- [ ] **Phase 2: Delegation Wiring** - Route framework-fit questions to the GSD skills via the `Skill` tool, with explicit presence checking
+- [x] **Phase 2: Delegation Wiring** - Route framework-fit questions to the GSD skills via the `Skill` tool, with explicit presence checking (completed 2026-07-12)
 - [ ] **Phase 4: agens-log (Append-Only Logging)** - Record each recommendation as an append-only, attributed entry in the vault's date-header convention
 
 ## Phase Details
@@ -88,7 +88,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 02-02-PLAN.md — Human checkpoint: verify live routing, the fixed failure on a missing precondition, and the unchanged Phase 1 pattern path
+- [x] 02-02-PLAN.md — Human checkpoint: verify live routing, the fixed failure on a missing precondition, and the unchanged Phase 1 pattern path
 
 ### Phase 4: agens-log (Append-Only Logging)
 
@@ -125,5 +125,5 @@ Phases execute in numeric order: 0 → 1 → 2 → 4
 |-------|----------------|--------|-----------|
 | 0. Vault Consolidation | 1/1 | Complete   | 2026-07-12 |
 | 1. agens (Read-Only Recommend) | 3/3 | Complete   | 2026-07-12 |
-| 2. Delegation Wiring | 1/2 | In Progress|  |
+| 2. Delegation Wiring | 2/2 | Complete   | 2026-07-12 |
 | 4. agens-log (Append-Only Logging) | 0/TBD | Not started | - |

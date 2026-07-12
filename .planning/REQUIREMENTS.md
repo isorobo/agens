@@ -18,8 +18,8 @@
 
 ### Delegate
 
-- [ ] **DELEGATE-01**: User's framework-fit questions are routed to `gsd-framework-selector`/`gsd-ai-integration-phase` via the `Skill` tool rather than answered inline by agens.
-- [ ] **DELEGATE-02**: User sees an explicit, clear failure message — never a silent inline reimplementation — when a delegated Skill is not installed or not found.
+- [x] **DELEGATE-01**: User's framework-fit questions are routed to `gsd-framework-selector`/`gsd-ai-integration-phase` via the `Skill` tool rather than answered inline by agens.
+- [x] **DELEGATE-02**: User sees an explicit, clear failure message — never a silent inline reimplementation — when a delegated Skill is not installed or not found.
 
 ### Log
 
@@ -64,8 +64,8 @@
 | RECOMMEND-05 | Phase 1 | Verified |
 | RECOMMEND-06 | Phase 1 | Verified |
 | RECOMMEND-07 | Phase 1 | Verified |
-| DELEGATE-01 | Phase 2 | Pending |
-| DELEGATE-02 | Phase 2 | Pending |
+| DELEGATE-01 | Phase 2 | Complete |
+| DELEGATE-02 | Phase 2 | Complete |
 | LOG-01 | Phase 4 | Pending |
 | LOG-02 | Phase 4 | Pending |
 
