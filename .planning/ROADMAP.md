@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 0: Vault Consolidation** - Collapse the six-source `topic/agent-patterns` cluster into one canonical concept note
  (completed 2026-07-12)
 
-- [ ] **Phase 1: agens (Read-Only Recommend)** - Citation-grounded pattern recommendation via questionnaire, dual invocation, and a runtime citation-resolves check
+- [x] **Phase 1: agens (Read-Only Recommend)** - Citation-grounded pattern recommendation via questionnaire, dual invocation, and a runtime citation-resolves check (completed 2026-07-12)
 - [ ] **Phase 2: Delegation Wiring** - Route framework-fit questions to the GSD skills via the `Skill` tool, with explicit presence checking
 - [ ] **Phase 4: agens-log (Append-Only Logging)** - Record each recommendation as an append-only, attributed entry in the vault's date-header convention
 
@@ -65,7 +65,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-03-PLAN.md — Human checkpoint: verify dual invocation, questionnaire, recommendation, and refusal live
+- [x] 01-03-PLAN.md — Human checkpoint: verify dual invocation, questionnaire, recommendation, and refusal live
 
 ### Phase 2: Delegation Wiring
 
@@ -119,6 +119,6 @@ Phases execute in numeric order: 0 → 1 → 2 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 0. Vault Consolidation | 1/1 | Complete   | 2026-07-12 |
-| 1. agens (Read-Only Recommend) | 2/3 | In Progress|  |
+| 1. agens (Read-Only Recommend) | 3/3 | Complete   | 2026-07-12 |
 | 2. Delegation Wiring | 0/TBD | Not started | - |
 | 4. agens-log (Append-Only Logging) | 0/TBD | Not started | - |
