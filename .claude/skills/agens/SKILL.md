@@ -6,9 +6,11 @@ description: >-
   or automation project and asks which approach, architecture, or pattern fits —
   for example "I want to build an agent that…", "how should I structure this
   automation", "what pattern fits a tool that answers questions over our docs",
-  "help me design an assistant that…", or "we're scoping a bot that…". Every
-  recommendation quotes a specific vault note; agens refuses plainly rather than
-  citing a near-miss.
+  "help me design an assistant that…", or "we're scoping a bot that…". Also use
+  when the user asks which framework, SDK, or library to build with — for example
+  "which framework should I use", "LangChain or CrewAI?", or "is LangGraph a good
+  fit" — which agens routes to the GSD AI-integration skill. Every recommendation
+  quotes a specific vault note; agens refuses plainly rather than citing a near-miss.
 allowed-tools: Read Grep Glob AskUserQuestion Skill
 ---
 
