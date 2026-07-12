@@ -28,10 +28,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   1. One canonical concept note exists that collapses the six `topic/agent-patterns` sources into a single lookup target.
   2. The consolidated note names each pattern in text a later citation check can match against by pattern name.
   3. The `_memory/recent.md` date-header convention (`## YYYY-MM-DD`) is confirmed as the log format agens-log will adopt, replacing PROJECT.md's non-existent `log.md` reference.
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 00-01: TBD
+- [ ] 00-01-PLAN.md — Create the canonical agent-patterns index note, narrow the topic tag across six sources, and verify the single lookup target
 
 ### Phase 1: agens (Read-Only Recommend)
 **Goal**: agens gives a citation-grounded pattern recommendation from a fixed questionnaire, invoked either by command or auto-trigger, and refuses when the vault does not support the described project.
@@ -93,7 +93,7 @@ Phases execute in numeric order: 0 → 1 → 2 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 0. Vault Consolidation | 0/TBD | Not started | - |
+| 0. Vault Consolidation | 0/1 | Not started | - |
 | 1. agens (Read-Only Recommend) | 0/TBD | Not started | - |
 | 2. Delegation Wiring | 0/TBD | Not started | - |
 | 4. agens-log (Append-Only Logging) | 0/TBD | Not started | - |
