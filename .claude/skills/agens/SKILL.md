@@ -54,10 +54,16 @@ Run this detection on the user's INITIAL message only, before starting the
 four-question pattern intake. It decides whether the request is a framework-fit
 question (route it) or a pattern-fit question (agens' own job).
 
-Match a framework-fit question by keyword or semantic signal on framework and SDK
-terminology. Name at least: LangChain, CrewAI, LangGraph, "Agent SDK", "which
-framework", "which SDK", and "which library should I use". Semantically close
-phrasings that ask which framework, SDK, or library fits also match.
+Match on the QUESTION SHAPE, not on bare keyword presence. A match requires the
+user to ask which framework, SDK, or library to use — an explicit "which X fits /
+should I use" shape, or an unambiguous semantic equivalent. Qualifying phrasings
+include: "which framework should I use", "LangChain or CrewAI?", "is LangGraph a
+good fit", "which SDK for this", and "which library should I use".
+
+A bare product name inside a pattern-scoping sentence does NOT match. "I want to
+build an agent using the Claude Agent SDK that summarises documents" names the SDK
+but asks for a pattern, not a framework choice — fall through to Step 1. Match only
+when the request itself asks agens to choose a framework, SDK, or library.
 
 - **On a match:** skip Steps 1-3 entirely and branch to the
   `## Delegate a framework-fit question` section. Do not run the pattern
