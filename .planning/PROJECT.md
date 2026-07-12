@@ -12,7 +12,7 @@ Every recommendation agens gives cites a specific wiki-agents note by path, not 
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] wiki-agents' `topic/agent-patterns` cluster (6 sources) is consolidated into one canonical concept note as agens' single lookup target — Validated in Phase 0: Vault Consolidation
 
 ### Active
 
@@ -23,7 +23,6 @@ Every recommendation agens gives cites a specific wiki-agents note by path, not 
 - [ ] agens offers, but does not auto-run, MCP Builder when tooling is identified as a need
 - [ ] agens delegates framework-fit questions to `gsd-framework-selector`/`gsd-ai-integration-phase` rather than reimplementing that judgement
 - [ ] agens logs each recommendation decision append-only, mirroring the vault's own LLM-wiki `log.md` pattern
-- [ ] wiki-agents' `topic/agent-patterns` cluster (6 sources) is consolidated into one canonical concept note as agens' single lookup target
 
 ### Out of Scope
 
@@ -56,7 +55,7 @@ Every recommendation agens gives cites a specific wiki-agents note by path, not 
 | Split "recommend" (read-only) from "build" (write) into two gated capabilities | An agent that builds its own tools and trusts them unreviewed is the exact self-mutation/rug-pull pattern the vault's own MCP Security note warns against | — Pending |
 | Delegate framework-fit questions to `gsd-framework-selector`/`gsd-ai-integration-phase` rather than reimplementing | Avoids reproducing existing, already-installed GSD capability | — Pending |
 | Invoke agens via both slash command and auto-trigger | User confirmed both matter: explicit control when wanted, no command to remember for casual mentions | — Pending |
-| Consolidate the vault's 6-source `topic/agent-patterns` cluster into one canonical concept note in Phase 0 | User decided now rather than deferring to research — gives agens one lookup target instead of six | — Pending |
+| Consolidate the vault's 6-source `topic/agent-patterns` cluster into one canonical concept note in Phase 0 | User decided now rather than deferring to research — gives agens one lookup target instead of six | Complete — `30_Concepts/agent-patterns-index.md` is the sole carrier, verified 2026-07-12 |
 
 ## Evolution
 
@@ -76,4 +75,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-11 after initialization*
+*Last updated: 2026-07-12 after Phase 0: Vault Consolidation*
