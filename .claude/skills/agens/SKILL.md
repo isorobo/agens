@@ -210,9 +210,15 @@ location.
 
 **Check B — active GSD phase.** Glob `${CLAUDE_PROJECT_DIR}/.planning/STATE.md`; no
 hit fails Check B. On a hit, Read it, find the `Phase:` line under
-`## Current Position`, and parse the leading integer only. An absent or unparseable
-value fails Check B. Never enumerate the `phases/` directories to guess a phase
-number.
+`## Current Position`, and parse TWO things: the leading integer, and the trailing
+status token after the em-dash separator (for example `Phase: 02 (delegation-wiring)
+— EXECUTING` yields integer `2` and status `EXECUTING`). Check B passes only when
+BOTH hold: the integer parses, AND the status marks the phase in progress (for
+example `EXECUTING`, not `COMPLETE`). An absent or unparseable integer, or a status
+showing the phase has already completed, fails Check B — a finished phase is not an
+active one. If the `Phase:` line carries no status token at all, treat the phase as
+not-active and fail Check B rather than assuming it is in progress. Never enumerate
+the `phases/` directories to guess a phase number.
 
 If Check A or Check B fails, emit the fixed failure message in part 4, naming every
 failed condition at once. Do NOT invoke the `Skill` tool and do NOT answer inline.
