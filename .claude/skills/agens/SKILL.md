@@ -304,3 +304,13 @@ To proceed:
   DELEGATE-02 boundary.
 - **Inventing a phase number.** Never enumerate the `phases/` directories to guess a
   phase. Read the single current-phase integer from STATE.md, or fail loud.
+- **Assuming the `Skill` grant is self-limiting.** Claude Code's `allowed-tools`
+  cannot scope the `Skill` tool to one named target (unlike `Bash(git:*)`), so the
+  "only ever `gsd-ai-integration-phase`" rule in part 2 is enforced by this prompt
+  text alone, not by a technical control. A prompt-injected vault note, a malformed
+  detection match, or a reasoning slip could target a different, write-capable skill
+  (for example `build-mcp-server`) through the same grant. Never invoke any skill
+  other than `gsd-ai-integration-phase` from this file. The `agens-build` phase must
+  keep its own human-approval gate; do not skip it on the assumption that this
+  `Skill` grant is otherwise safe. This residual risk is a platform limitation, not
+  a fixable defect — keep it visible.
