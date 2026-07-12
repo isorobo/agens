@@ -48,6 +48,31 @@ Use this skill when the user:
 Do NOT use this skill to debug existing agent code, to discuss AI news, or to
 answer general questions about agent terminology. Those requests are out of scope.
 
+## Step 0: Detect a framework-fit question
+
+Run this detection on the user's INITIAL message only, before starting the
+four-question pattern intake. It decides whether the request is a framework-fit
+question (route it) or a pattern-fit question (agens' own job).
+
+Match a framework-fit question by keyword or semantic signal on framework and SDK
+terminology. Name at least: LangChain, CrewAI, LangGraph, "Agent SDK", "which
+framework", "which SDK", and "which library should I use". Semantically close
+phrasings that ask which framework, SDK, or library fits also match.
+
+- **On a match:** skip Steps 1-3 entirely and branch to the
+  `## Delegate a framework-fit question` section. Do not run the pattern
+  questionnaire.
+- **On no match:** fall through to the existing Step 1 below, unchanged.
+
+Framework-fit language surfacing MID-conversation — after the pattern intake has
+started, or after a recommendation has been given — is out of scope for this phase.
+Detection fires on the initial message only; do not re-route a conversation already
+underway.
+
+Detection lives here in Step 0 only. Do not add a second advertised entry point to
+`## When to Use This Skill` — that section keeps its pattern-recommendation phrasings
+unchanged.
+
 ## Step 1: Ask the four fixed questions in one call
 
 Ask all four dimensions in a SINGLE `AskUserQuestion` call, before any
