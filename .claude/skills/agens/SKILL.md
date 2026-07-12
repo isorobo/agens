@@ -202,13 +202,25 @@ section runs INSTEAD of Steps 1-3, never alongside them.
 Run both checks below BEFORE any `Skill` tool call. Report every failure at once —
 do not surface one condition, wait for a fix, then surface the next.
 
-**Check A — target present.** Glob
-`${CLAUDE_SKILL_DIR}/../gsd-ai-integration-phase/SKILL.md`. A positive hit confirms
-the target is present. A miss, OR a path that cannot resolve for any reason, fails
-Check A. Proceed only on a positive confirmation. A non-confirmation is a refuse
-condition — never a licence to answer the framework question inline. This
-refuse-on-uncertainty backstop keeps the gate safe regardless of agens' own install
-location.
+**Check A — target present.** Glob BOTH known install roots for the target and
+treat a hit on EITHER as a pass:
+
+- the project-level sibling path
+  `${CLAUDE_SKILL_DIR}/../gsd-ai-integration-phase/SKILL.md`;
+- the user-level skills root
+  `~/.claude/skills/gsd-ai-integration-phase/SKILL.md`.
+
+Use the literal user home skills path for the second Glob — do NOT substitute
+`${CLAUDE_PROJECT_DIR}`, and do not assume `${CLAUDE_SKILL_DIR}` points at a
+user-level root, since it may resolve into a project-level checkout. A positive
+hit on either path confirms the target is present and passes Check A. Proceed
+only when at least one path resolves to a hit. A miss on BOTH paths — or a path
+that cannot resolve for any reason — fails Check A. A non-confirmation is a
+refuse condition, never a licence to answer the framework question inline. This
+refuse-on-uncertainty backstop checks both known install roots and refuses if
+the target is found at neither, so a genuinely-installed target is found whether
+agens itself runs from a project-level or a user-level copy, while an
+uninstalled target still fails closed.
 
 **Check B — active GSD phase.** Glob `${CLAUDE_PROJECT_DIR}/.planning/STATE.md`; no
 hit fails Check B. On a hit, Read it, find the `Phase:` line under
