@@ -9,7 +9,7 @@ description: >-
   "help me design an assistant that…", or "we're scoping a bot that…". Every
   recommendation quotes a specific vault note; agens refuses plainly rather than
   citing a near-miss.
-allowed-tools: Read Grep Glob AskUserQuestion
+allowed-tools: Read Grep Glob AskUserQuestion Skill
 ---
 
 # agens — Read-Only Pattern Recommender
@@ -47,6 +47,31 @@ Use this skill when the user:
 
 Do NOT use this skill to debug existing agent code, to discuss AI news, or to
 answer general questions about agent terminology. Those requests are out of scope.
+
+## Step 0: Detect a framework-fit question
+
+Run this detection on the user's INITIAL message only, before starting the
+four-question pattern intake. It decides whether the request is a framework-fit
+question (route it) or a pattern-fit question (agens' own job).
+
+Match a framework-fit question by keyword or semantic signal on framework and SDK
+terminology. Name at least: LangChain, CrewAI, LangGraph, "Agent SDK", "which
+framework", "which SDK", and "which library should I use". Semantically close
+phrasings that ask which framework, SDK, or library fits also match.
+
+- **On a match:** skip Steps 1-3 entirely and branch to the
+  `## Delegate a framework-fit question` section. Do not run the pattern
+  questionnaire.
+- **On no match:** fall through to the existing Step 1 below, unchanged.
+
+Framework-fit language surfacing MID-conversation — after the pattern intake has
+started, or after a recommendation has been given — is out of scope for this phase.
+Detection fires on the initial message only; do not re-route a conversation already
+underway.
+
+Detection lives here in Step 0 only. Do not add a second advertised entry point to
+`## When to Use This Skill` — that section keeps its pattern-recommendation phrasings
+unchanged.
 
 ## Step 1: Ask the four fixed questions in one call
 
@@ -157,6 +182,81 @@ None resolved. I will not cite a loosely related pattern to fill the gap.
 You could refine one of the four answers, or add a pattern note to the vault.
 ```
 
+## Delegate a framework-fit question
+
+Step 0 routes here when the user's initial message names a framework or SDK. agens
+does not answer framework-fit questions from its own knowledge. It routes them to
+`gsd-ai-integration-phase` through the `Skill` tool, or it refuses plainly. This
+section runs INSTEAD of Steps 1-3, never alongside them.
+
+### 1. Combined pre-flight gate (run BOTH before any Skill call)
+
+Run both checks below BEFORE any `Skill` tool call. Report every failure at once —
+do not surface one condition, wait for a fix, then surface the next.
+
+**Check A — target present.** Glob
+`${CLAUDE_SKILL_DIR}/../gsd-ai-integration-phase/SKILL.md`. A positive hit confirms
+the target is present. A miss, OR a path that cannot resolve for any reason, fails
+Check A. Proceed only on a positive confirmation. A non-confirmation is a refuse
+condition — never a licence to answer the framework question inline. This
+refuse-on-uncertainty backstop keeps the gate safe regardless of agens' own install
+location.
+
+**Check B — active GSD phase.** Glob `${CLAUDE_PROJECT_DIR}/.planning/STATE.md`; no
+hit fails Check B. On a hit, Read it, find the `Phase:` line under
+`## Current Position`, and parse the leading integer only. An absent or unparseable
+value fails Check B. Never enumerate the `phases/` directories to guess a phase
+number.
+
+If Check A or Check B fails, emit the fixed failure message in part 4, naming every
+failed condition at once. Do NOT invoke the `Skill` tool and do NOT answer inline.
+
+### 2. Invocation (both checks passed)
+
+Call the `Skill` tool with skill name `gsd-ai-integration-phase`. Pass the parsed
+phase integer as the first line of the argument string (it binds to `$ARGUMENTS`),
+then a blank line, then the four questionnaire answers as labelled background prose:
+
+```
+Invoke the Skill tool with:
+  skill name: gsd-ai-integration-phase
+  arguments:  "<phase-integer-from-STATE.md>
+
+  Background from agens (do not re-ask the user these):
+  - goal: <goal answer>
+  - workflow: <workflow answer>
+  - data sensitivity: <sensitivity answer>
+  - latency/cost: <latency answer>"
+```
+
+Never target `gsd-framework-selector` — it has no `Skill` entry point. Never reach
+for the `Agent` tool as a workaround to invoke the selector in isolation. The only
+delegation route is `gsd-ai-integration-phase` via the `Skill` tool.
+
+### 3. Present the target's output as-is
+
+After the `Skill` call, stop narrating. Present the target's own prompts and
+`AI-SPEC.md` output verbatim. Do not paraphrase, summarise, or reframe them as
+agens' own recommendation. agens triggers the target and steps back.
+
+### 4. Fixed failure message (Check A or Check B failed)
+
+Emit this text exactly, keeping only the `{if A}` and `{if B}` lines for whichever
+condition failed:
+
+```
+I route framework and SDK questions to the GSD AI-integration skill rather than
+answering them myself, and I cannot start that hand-off right now.
+
+Blocking:
+- {if A} The gsd-ai-integration-phase skill is not installed where I can find it.
+- {if B} You are not inside an active GSD phase (no .planning/STATE.md current phase).
+
+To proceed:
+- {if A} Install the GSD skill family so gsd-ai-integration-phase is available.
+- {if B} Start or resume a GSD phase, then ask again.
+```
+
 ## Anti-patterns
 
 - **Decorative citation.** Never cite the index note, or a near-miss entry, "to
@@ -165,3 +265,14 @@ You could refine one of the four answers, or add a pattern note to the vault.
 - **Un-gated model-knowledge recommendation.** Never recommend a pattern without
   the Step 2b Read+Grep gate passing. Recommending from model recall alone
   destroys agens' core value — a grounded, verifiable citation every time.
+- **Wrapping the target's output.** Never summarise or reframe
+  `gsd-ai-integration-phase`'s prompts or `AI-SPEC.md` output. It runs inline; let
+  it speak for itself (D-09).
+- **Reactive absence handling.** Never call the `Skill` tool first and catch the
+  error to detect absence. Pre-check presence with the Glob in Check A before any
+  invocation (D-04).
+- **Answering inline on a gate failure.** A failed pre-flight gate routes to the
+  fixed failure message, never to agens' own framework opinion. This is the
+  DELEGATE-02 boundary.
+- **Inventing a phase number.** Never enumerate the `phases/` directories to guess a
+  phase. Read the single current-phase integer from STATE.md, or fail loud.
