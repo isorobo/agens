@@ -214,8 +214,22 @@ failed condition at once. Do NOT invoke the `Skill` tool and do NOT answer inlin
 ### 2. Invocation (both checks passed)
 
 Call the `Skill` tool with skill name `gsd-ai-integration-phase`. Pass the parsed
-phase integer as the first line of the argument string (it binds to `$ARGUMENTS`),
-then a blank line, then the four questionnaire answers as labelled background prose:
+phase integer as the first line of the argument string (it binds to `$ARGUMENTS`).
+
+The four questionnaire answers (goal, workflow, data sensitivity, latency/cost)
+are best-effort background context, not a precondition (D-03). Step 0 routes a
+framework-fit question straight here and skips the Step 1 intake (D-08), so on that
+path no answers exist — that is expected and correct. Never re-run the Step 1
+questionnaire before delegating, and never fabricate answers to fill the block.
+Decide by whether the answers were already collected:
+
+- **Answers exist** — a prior Step 1 run earlier in THIS conversation collected
+  them. Append a blank line after the phase integer, then the labelled block below.
+- **No answers exist** — the Step 0 framework-fit path reached here without an
+  intake. Pass the phase integer alone. Emit no background block and no placeholder
+  lines; `gsd-ai-integration-phase` gathers what it needs itself.
+
+Argument string WITH background answers:
 
 ```
 Invoke the Skill tool with:
@@ -227,6 +241,14 @@ Invoke the Skill tool with:
   - workflow: <workflow answer>
   - data sensitivity: <sensitivity answer>
   - latency/cost: <latency answer>"
+```
+
+Argument string WITHOUT background answers (the Step 0 framework-fit path):
+
+```
+Invoke the Skill tool with:
+  skill name: gsd-ai-integration-phase
+  arguments:  "<phase-integer-from-STATE.md>"
 ```
 
 Never target `gsd-framework-selector` — it has no `Skill` entry point. Never reach
