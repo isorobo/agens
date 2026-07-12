@@ -370,27 +370,34 @@ Phase 1 writes nothing to the vault. RECOMMEND-07 reads as "IF agens writes a no
 | A4 | Goal-bucket wording beyond D-03's four examples (and whether a catch-all bucket exists) mirrors `agent-patterns-index.md` family language | Code Examples, Open Questions | Wrong buckets misroute the lookup. Marked Claude's Discretion; confirm final wording in planning. |
 | A5 | Header `Latency` (not `Latency/cost`) and `Sensitivity` (not `Data sensitivity`) used to stay inside the 12-char header cap | Pattern 2 | Over-cap header is rejected or truncated by the tool. Low risk — the cap is verified. |
 
-## Open Questions
+## Open Questions (RESOLVED)
+
+All four questions are resolved. Questions 1-3 are closed in Plan 01-01's `<resolved_open_questions>` block; Question 4 (grep-only recall) is resolved by design and empirically validated in the Plan 01-03 checkpoint.
+
 
 1. **RECOMMEND-07 write scope (undecided in CONTEXT.md).**
    - What we know: no agent-authorship field exists in the schema; Phase 4 owns the only vault write (`agens-log.md`, LOG-01); the phase is named read-only.
    - What's unclear: whether Phase 1 writes anything at all, or only fixes the convention.
    - Recommendation: treat Phase 1 as writing nothing; define the tagging convention for Phase 4. Confirm with the user before planning any Phase 1 vault write.
+   - **RESOLVED:** Phase 1 writes nothing to the vault; it fixes the agent-authored tagging convention for Phase 4 to enforce (Plan 01-02).
 
 2. **Match & refusal threshold (undecided in CONTEXT.md).**
    - What we know: a match must resolve to a specific bold entry; a "loosely related" citation must be refused.
    - What's unclear: the exact rule mapping four answers to a pattern-trigger fit, and how many near-miss dimensions still count as a match.
    - Recommendation: adopt A3 (match = a bold entry whose trigger the answers satisfy; else refuse) as the default, and confirm it with the user, since it sets the RECOMMEND-05/06 boundary.
+   - **RESOLVED:** A3 adopted in Plan 01-01 (`<resolved_open_questions>`): a match requires a single bold entry whose Trigger the four answers satisfy; anything less refuses.
 
 3. **Recommendation output format (undecided in CONTEXT.md).**
    - What we know: RECOMMEND-04 requires the path plus a quoted supporting passage; REQUIREMENTS.md forbids citing multiple notes "to look thorough."
    - What's unclear: how much of the matched entry to quote, and whether more than one pattern may be surfaced when several genuinely fit.
    - Recommendation: quote the matched entry's trigger + trade-off sentence; surface one pattern by default. Confirm whether multi-pattern output is wanted.
+   - **RESOLVED:** One pattern surfaced by default, with its Trigger and Trade-off quoted verbatim (Plan 01-01); multi-pattern output is out of scope per REQUIREMENTS.md.
 
 4. **Grep-only recall (STATE.md concern).**
    - What we know: the lookup target is one 8 KB note with 21 bold entries.
    - What's unclear: whether grep-only search misses a semantically close pattern when the goal bucket does not lexically match a trigger.
    - Recommendation: confirm empirically with the phrasing/answer test set before adding any synonym expansion or index — do not pre-build an index (out of scope).
+   - **RESOLVED:** Accepted risk, mitigated by design. Pattern selection is LLM-semantic goal-family mapping (Plan 01-01 Task 3), not a literal grep of goal-bucket wording against Trigger text. Grep runs only as a post-hoc verification of the bold **Name** literal for the already-selected pattern, so a lexical mismatch between a goal bucket and a Trigger cannot by itself cause a false refusal. Recall is empirically validated by the Plan 01-03 checkpoint, which spot-checks one clearly-matching example per goal bucket (4 checks). No synonym expansion or index is built.
 
 ## Environment Availability
 
@@ -451,7 +458,7 @@ Phase 1 writes nothing to the vault. RECOMMEND-07 reads as "IF agens writes a no
 - Standard stack: HIGH — every component is a built-in tool or documented frontmatter field, verified against current official docs and the installed 2.1.207 binary.
 - Architecture / patterns: HIGH — dual invocation, the four-question call, and the Read+Grep gate are all documented and match the verified index-note format.
 - Pitfalls: HIGH — the "Other" free-text finding and the header-cap finding come directly from the Agent SDK docs; the grep-anchoring pitfall from the verified note format.
-- Open questions: the three undecided CONTEXT items and the grep-recall concern are genuine gaps for the planner or user to resolve.
+- Open questions: RESOLVED. The three undecided CONTEXT items are closed in Plan 01-01; the grep-recall concern is resolved by design (Grep is a post-hoc bold-**Name** verification of an LLM-selected pattern, not a lexical search over goal-bucket wording) and empirically validated by the Plan 01-03 per-bucket checkpoint.
 
 **Research date:** 2026-07-12
 **Valid until:** 2026-08-11 (30 days; Skills and AskUserQuestion docs are stable, but Claude Code ships often — re-verify frontmatter fields if the plan slips past this window).
