@@ -40,7 +40,7 @@ blocked: 0
 ## Gaps
 
 - Auto-trigger gap: with agens installed at user level and the exact framework-fit opener from DELEGATE-01, the skill was not selected on a bare opener; base Claude answered inline from project CLAUDE.md. Explicit invocation works (Test 1 retest passed). Confound noted: inside the agens repo, "this" resolves to a project whose CLAUDE.md already settles the framework. Consider a follow-up trigger test from a neutral project.
-- UAT side effect: the Test 1 retest ran the delegated skill to completion, writing and committing `02-AI-SPEC.md` (45a0cfe) to the agens repo during acceptance testing. Confirm the artifact is wanted or revert it.
+- UAT side effect (resolved 2026-07-13): the Test 1 retest ran the delegated skill to completion, writing and committing `02-AI-SPEC.md` (45a0cfe) during acceptance testing. Operator decision: keep the artifact.
 - Refusal-template misstatement (Phase 1 behaviour, observed in Test 3): with the vault ungranted, the "no pattern matches / I searched agent-patterns-index.md" refusal fired even though no search happened. The path-does-not-resolve failure needs its own wording so the refusal states the true cause.
 - Refuse-then-hint leak (Phase 1 behaviour, observed in Test 3): after the plain refusal, agens named "Knowledge Retrieval / RAG" as a "clear candidate" from model knowledge. The contract is a plain refusal with no candidate named.
 - D-09 tail violation (Test 4): agens appended a two-paragraph summary after the delegated skill's completion banner. Fix in agens SKILL.md's "Present the target's output as-is" section: after the delegated skill's completion banner, agens emits nothing — the turn ends at the target's own "Next step" line.
