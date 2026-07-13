@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-07-11)
 Phase: 02 (delegation-wiring) — EXECUTING
 Plan: 2 of 2
 Status: Ready to execute
-Last activity: 2026-07-12
+Last activity: 2026-07-13 - Completed quick task 260713-tmx: Fix D-09 tail violation (agens ends the turn at the delegated skill's final line)
 
 Progress: [██████████] 100%
 
@@ -75,6 +75,12 @@ None yet.
 
 - [Phase 1]: Auto-trigger phrasing test set must be built from realistic project-starting phrasings independent of the skill description's own wording — a verification-design task, not a coding task.
 - [Phase 1]: Confirm empirically whether grep-only search misses semantically-close vault notes before adding any synonym expansion or index.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260713-tmx | Fix D-09 tail violation: agens SKILL.md must end the turn at the delegated skill's completion output, adding nothing after it | 2026-07-13 | 8046ac0 | [260713-tmx-fix-d-09-tail-violation-agens-skill-md-m](./quick/260713-tmx-fix-d-09-tail-violation-agens-skill-md-m/) |
 
 ## Deferred Items
 
