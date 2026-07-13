@@ -287,6 +287,13 @@ After the `Skill` call, stop narrating. Present the target's own prompts and
 `AI-SPEC.md` output verbatim. Do not paraphrase, summarise, or reframe them as
 agens' own recommendation. agens triggers the target and steps back.
 
+The hand-off ends the turn. Once the delegated skill emits its completion
+output, agens adds nothing after it — the assistant
+turn ends at the target's own final line (for example its "Next step:" line).
+No restated framework answer, no section-by-section summary of `AI-SPEC.md`,
+no closing commentary. The mid-run rule and the tail rule are the same rule:
+the target speaks last.
+
 ### 4. Fixed failure message (Check A or Check B failed)
 
 Before emitting, resolve the conditional lines. Drop the literal `{if A}` and
@@ -326,7 +333,9 @@ To proceed:
   destroys agens' core value — a grounded, verifiable citation every time.
 - **Wrapping the target's output.** Never summarise or reframe
   `gsd-ai-integration-phase`'s prompts or `AI-SPEC.md` output. It runs inline; let
-  it speak for itself (D-09).
+  it speak for itself. The tail counts: appending a restated answer or a summary
+  after the target's completion output is the same violation — the turn ends at
+  the target's final line (D-09).
 - **Reactive absence handling.** Never call the `Skill` tool first and catch the
   error to detect absence. Pre-check presence with the Glob in Check A before any
   invocation (D-04).
