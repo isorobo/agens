@@ -329,22 +329,22 @@ allowed-tools: Read Grep Glob AskUserQuestion Skill Bash(${CLAUDE_SKILL_DIR}/scr
 
 **Not assumed (verified this session):** the two skill copies are identical; the log file does not exist; `schema.md` lacks `authored_by`; the index note is untracked in git; `allowed-tools` accepts a space-separated string with `Bash(...)` scoping; all shell primitives are present.
 
-## Open Questions
+## Open Questions (RESOLVED)
 
 1. **Do refusals and delegations get logged, or only successful recommendations?**
    - What we know: LOG-01 says "each agens recommendation." A refusal recommends nothing. A delegation hands off, and D-09's tail rule forbids agens adding anything after the target's output.
    - What's unclear: whether the user reads "each recommendation" narrowly (Step 3 success only) or broadly (every agens outcome).
-   - Recommendation: log successful recommendations only. Delegation-logging is ruled out by D-09 regardless. Confirm the refusal case with the user; it is a one-line scope decision, not a design change.
+   - RESOLVED (adopted in the plans): log successful recommendations only. Delegation-logging is ruled out by D-09 regardless. Confirm the refusal case with the user; it is a one-line scope decision, not a design change.
 
 2. **Newest-first or oldest-first entry order?**
    - What we know: `.remember/recent.md` displays newest-first; pure `>>` appends oldest-first at the tail; D-02 forbids any rewrite.
    - What's unclear: whether the user values the newest-first display enough to accept a mechanism other than pure append.
-   - Recommendation: oldest-first append (honours D-02, no rewrite). If newest-first is required, raise it — it cannot be met by append alone.
+   - RESOLVED (adopted): oldest-first append (honours D-02, no rewrite). If newest-first is required, raise it — it cannot be met by append alone.
 
 3. **Does `${CLAUDE_SKILL_DIR}` resolve inside `allowed-tools`?**
    - What we know: the docs confirm `${CLAUDE_PROJECT_DIR}` applies to `allowed-tools`; `${CLAUDE_SKILL_DIR}` is documented for the body but not explicitly for the grant.
    - What's unclear: whether the skill-dir variable resolves in the grant, which matters only if the bundled-script fallback is chosen.
-   - Recommendation: verify in Wave 0 if the fallback is on the table; otherwise the inline `>>` grant needs no path variable.
+   - RESOLVED (routed to the Wave 0 empirical probe in 04-01): verify in Wave 0 if the fallback is on the table; otherwise the inline `>>` grant needs no path variable.
 
 ## Environment Availability
 
