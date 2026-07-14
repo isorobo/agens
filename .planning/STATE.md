@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-07-11)
 Phase: 02 (delegation-wiring) — EXECUTING
 Plan: 2 of 2
 Status: Ready to execute
-Last activity: 2026-07-13 - Completed quick task 260713-tmx: Fix D-09 tail violation (agens ends the turn at the delegated skill's final line)
+Last activity: 2026-07-15 - Completed quick task 260715-894: Ingest Claude Code dynamic-workflows knowledge into wiki-agents vault and reference it in README
 
 Progress: [██████████] 100%
 
@@ -69,7 +69,7 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-None yet.
+- [Captured 2026-07-15, quick 260715-894]: Surface a cited execution-substrate line in agens' recommendation output (Step 3 of SKILL.md) when Goal = "Orchestrate multiple specialists" or Workflow = "Fixed workflow", quoting the index note's Execution substrates section. Requires the vault note landed by quick task 260715-894. Roadmap-level decision: candidate for v2 alongside RECOMMEND-08/09.
 
 ### Blockers/Concerns
 
@@ -81,6 +81,7 @@ None yet.
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 260713-tmx | Fix D-09 tail violation: agens SKILL.md must end the turn at the delegated skill's completion output, adding nothing after it | 2026-07-13 | 8046ac0 | [260713-tmx-fix-d-09-tail-violation-agens-skill-md-m](./quick/260713-tmx-fix-d-09-tail-violation-agens-skill-md-m/) |
+| 260715-894 | Ingest Claude Code dynamic-workflows knowledge into wiki-agents vault (two source notes + Execution substrates index mapping) and refresh README | 2026-07-15 | 373448b | [260715-894-ingest-claude-code-dynamic-workflows-kno](./quick/260715-894-ingest-claude-code-dynamic-workflows-kno/) |
 
 ## Deferred Items
 
