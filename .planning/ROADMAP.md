@@ -38,7 +38,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 
-- [x] 00-01-PLAN.md — Create the canonical agent-patterns index note, narrow the topic tag across six sources, and verify the single lookup target
+- [x] 00-01-PLAN.md â Create the canonical agent-patterns index note, narrow the topic tag across six sources, and verify the single lookup target
 
 ### Phase 1: agens (Read-Only Recommend)
 
@@ -60,12 +60,12 @@ Plans:
 Plans:
 **Wave 1**
 
-- [x] 01-01-PLAN.md — Recommend/refuse spine: dual-invocation SKILL.md, four-question questionnaire, Read+Grep citation gate, plain refusal
-- [x] 01-02-PLAN.md — Define the agent-authored tagging convention for Phase 4 to enforce
+- [x] 01-01-PLAN.md â Recommend/refuse spine: dual-invocation SKILL.md, four-question questionnaire, Read+Grep citation gate, plain refusal
+- [x] 01-02-PLAN.md â Define the agent-authored tagging convention for Phase 4 to enforce
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [x] 01-03-PLAN.md — Human checkpoint: verify dual invocation, questionnaire, recommendation, and refusal live
+- [x] 01-03-PLAN.md â Human checkpoint: verify dual invocation, questionnaire, recommendation, and refusal live
 
 ### Phase 2: Delegation Wiring
 
@@ -84,11 +84,11 @@ Plans:
 Plans:
 **Wave 1**
 
-- [x] 02-01-PLAN.md — Author the framework-fit delegation branch (Skill grant, Step 0 detection, combined gate, invocation, fixed failure message) and deploy agens at user level
+- [x] 02-01-PLAN.md â Author the framework-fit delegation branch (Skill grant, Step 0 detection, combined gate, invocation, fixed failure message) and deploy agens at user level
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [x] 02-02-PLAN.md — Human checkpoint: verify live routing, the fixed failure on a missing precondition, and the unchanged Phase 1 pattern path
+- [x] 02-02-PLAN.md â Human checkpoint: verify live routing, the fixed failure on a missing precondition, and the unchanged Phase 1 pattern path
 
 ### Phase 4: agens-log (Append-Only Logging)
 
@@ -102,11 +102,20 @@ Plans:
   2. `agens-log` cannot be triggered directly by conversation: it is called only by agens itself and never listed as a user-facing command.
   3. Read-back is bounded, each entry stamps the vault state it referenced, and the log is never treated as a grounding source for future recommendations.
 
-**Plans**: TBD
+**Plans**: 3 plans (3 waves)
 
 Plans:
+**Wave 1**
 
-- [ ] 04-01: TBD
+- [ ] 04-01-PLAN.md — Wave 0 empirical Bash-grant probe (decides inline vs fallback) and the schema authored_by field
+
+**Wave 2** *(blocked on Wave 1)*
+
+- [ ] 04-02-PLAN.md — Wire the scoped Bash grant, inline logging tail, D-03 refusal, and anti-patterns into SKILL.md
+
+**Wave 3** *(blocked on Wave 2)*
+
+- [ ] 04-03-PLAN.md — Redeploy to the runtime copy and human-verify live logging, refusal, delegation silence, and no-overwrite
 
 ## Deferred to v2
 
@@ -119,11 +128,11 @@ Monolith drift is a recurring phase-exit gate, not a single phase: at every phas
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 0 → 1 → 2 → 4
+Phases execute in numeric order: 0 â 1 â 2 â 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 0. Vault Consolidation | 1/1 | Complete   | 2026-07-12 |
 | 1. agens (Read-Only Recommend) | 3/3 | Complete   | 2026-07-12 |
 | 2. Delegation Wiring | 2/2 | Complete   | 2026-07-12 |
-| 4. agens-log (Append-Only Logging) | 0/TBD | Not started | - |
+| 4. agens-log (Append-Only Logging) | 0/3 | Not started | - |
