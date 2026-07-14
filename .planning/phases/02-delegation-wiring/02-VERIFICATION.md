@@ -1,30 +1,27 @@
 ---
 phase: 02-delegation-wiring
 verified: 2026-07-13T00:00:00Z
-status: human_needed
-score: 8/8 must-haves statically verified; 0/4 live-behaviour checks genuinely human-confirmed
+re_verified: 2026-07-15T00:00:00Z
+status: passed
+score: 8/8 must-haves statically verified; 4/4 live-behaviour checks human-confirmed via 02-HUMAN-UAT.md (3 passed; 1 issue found, fixed by quick 260713-tmx)
 overrides_applied: 0
-human_verification:
-  - test: "Open a fresh interactive session with agens loaded from the user-level install (~/.claude/skills/agens/), inside this GSD project (active Phase 2), with the opener: \"Which framework should I use for this — LangChain or the Claude Agent SDK?\""
-    expected: "agens skips the four-question pattern intake, runs the combined gate (Check A hits the user-level literal path since ~/.claude/skills/gsd-ai-integration-phase/SKILL.md exists; Check B reads STATE.md's Phase line and passes only if the status token still marks an in-progress phase), and invokes the Skill tool with skill name gsd-ai-integration-phase and the phase integer as $ARGUMENTS. No inline framework opinion, no questionnaire."
-    why_human: "This is prompt-driven branching logic (Glob path resolution, Skill-tool firing, ${CLAUDE_SKILL_DIR} resolution) that only executes correctly inside a live Claude Code session. It cannot be confirmed by static grep, and no genuine live run of the CURRENT file has occurred — see Gaps Summary."
-  - test: "From a directory/session with no .planning/STATE.md (or a STATE.md whose Phase line status token is COMPLETE, not an in-progress token), open with the same framework-fit message."
-    expected: "The fixed name+reason+next-step failure message fires, naming the failed condition(s); no Skill call; no inline framework opinion."
-    why_human: "Same reason — this exercises the same live prompt-logic path as above, including the WR-02 status-token gate added in the second review-fix pass, which has never been live-exercised."
-  - test: "Open with a non-framework opener such as \"I want to build an assistant that answers questions over our internal docs.\""
-    expected: "The Phase 1 four-question pattern intake runs unchanged; no delegation branch fires."
-    why_human: "Confirms Step 0's fall-through does not regress Phase 1's already-shipped behaviour; requires a live session to observe."
-  - test: "Confirm the present-as-is hand-off (D-09): after a successful Skill call, agens narrates nothing and gsd-ai-integration-phase's own prompts/AI-SPEC.md output appear verbatim, not paraphrased."
-    expected: "No agens summary or reframing wraps the target's output."
-    why_human: "Observable only in a live multi-turn session where the target skill actually runs."
+human_verification_resolved:
+  - test: "Live routing (DELEGATE-01) — framework-fit opener in this GSD project with agens from the user-level install."
+    result: "passed (02-HUMAN-UAT.md Test 1, 2026-07-13). Retest with explicit invocation: no intake, combined gate ran, Skill call fired with gsd-ai-integration-phase and phase 2, delegated skill ran end-to-end, no inline opinion. Bare-opener auto-trigger gap logged separately in UAT Gaps."
+  - test: "Live failure (DELEGATE-02) — same opener from a directory with no .planning/STATE.md."
+    result: "passed (02-HUMAN-UAT.md Test 2, 2026-07-13). Fixed name+reason+next-step message fired naming Check B; no Skill call; no inline opinion. Cosmetic trailing-text observation logged in UAT."
+  - test: "Unchanged pattern path — non-framework opener runs the Phase 1 intake."
+    result: "passed (02-HUMAN-UAT.md Test 3, 2026-07-13). Step 0 fell through; four questions ran; citation gate behaved correctly both without and with the vault grant."
+  - test: "Present-as-is hand-off (D-09) — target output verbatim, no agens narration."
+    result: "issue found and fixed (02-HUMAN-UAT.md Test 4, 2026-07-13). Mid-run clean; tail breached — agens appended a restated answer after the completion banner. Fixed by quick task 260713-tmx (commit 8046ac0); user-level copy synced byte-identical. Tail-behaviour retest rides on the next live delegation."
 ---
 
 # Phase 2: Delegation Wiring Verification Report
 
 **Phase Goal:** agens routes framework-fit questions to the GSD skills through the `Skill` tool rather than answering inline, and fails loudly when a target skill is absent.
 **Verified:** 2026-07-13
-**Status:** human_needed
-**Re-verification:** No — initial verification
+**Status:** passed (reconciled 2026-07-15 against the completed 02-HUMAN-UAT.md session)
+**Re-verification:** Yes — 2026-07-15, reconciling the human_needed items against live UAT results
 
 ## Format Note (Non-Blocking, Consistent with Phase 1)
 
@@ -93,14 +90,14 @@ SKIPPED. This phase's deliverable is prompt-driven Claude Code Skill behaviour (
 
 No `scripts/*/tests/probe-*.sh` files exist in this repository, and neither `02-01-PLAN.md` nor `02-02-PLAN.md` declares a probe path. SKIPPED (no conventional or PLAN-declared probes found).
 
-### Human Verification Required
+### Human Verification — RESOLVED (2026-07-15 reconciliation)
 
-Four items — see YAML frontmatter `human_verification` for full detail. In summary:
+All four items were run live in the human UAT session recorded in `02-HUMAN-UAT.md` (started 2026-07-12T12:15Z, completed 2026-07-13T09:13Z). Results:
 
-1. **Live routing (DELEGATE-01):** framework-fit opener → Skill-tool call to `gsd-ai-integration-phase` with phase argument `2`, no inline answer, no questionnaire.
-2. **Live failure (DELEGATE-02):** framework-fit opener with no active phase / completed-phase status → fixed failure message, no inline answer.
-3. **Unchanged pattern path:** non-framework opener still runs the Phase 1 four-question intake.
-4. **Present-as-is hand-off (D-09):** target's output appears verbatim, not paraphrased by agens.
+1. **Live routing (DELEGATE-01):** PASSED on retest with explicit invocation. Skill call fired with `gsd-ai-integration-phase` and phase `2`; delegated skill ran end-to-end; no inline answer, no questionnaire. A bare-opener auto-trigger gap is logged in the UAT Gaps section (a trigger-tuning concern, not a delegation-wiring failure).
+2. **Live failure (DELEGATE-02):** PASSED. From a directory with no `.planning/STATE.md`, the fixed name+reason+next-step message fired naming Check B; no Skill call; no inline opinion.
+3. **Unchanged pattern path:** PASSED. Step 0 fell through; the Phase 1 four-question intake ran unchanged; the citation gate refused without the vault grant and recommended correctly with it.
+4. **Present-as-is hand-off (D-09):** ISSUE FOUND, THEN FIXED. Mid-run clean; the tail breached — agens appended a restated answer after the completion banner. Fixed by quick task 260713-tmx (commit 8046ac0), user-level copy synced byte-identical. Residual: the tail behaviour retest rides on the next live delegation; tracked in `02-HUMAN-UAT.md` Gaps, not held open as verification debt.
 
 ### Gaps Summary
 
@@ -112,7 +109,10 @@ Compounding this, the logic-trace verification in `02-02-SUMMARY.md` was perform
 
 **This looks like an unintentional process shortcut, not a deliberate scope decision** — nothing in `02-CONTEXT.md` or the plans authorizes skipping the live check. Recommend the developer either (a) run the four checks in `02-02-PLAN.md` live in a fresh session and record the outcome, or (b) if the static trace is judged sufficient evidence, add an explicit override to this VERIFICATION.md's frontmatter accepting that substitution, with a stated reason.
 
+**Resolution (2026-07-15):** option (a) was taken. The four checks ran live in the human UAT session recorded in `02-HUMAN-UAT.md` (completed 2026-07-13). Three passed; the fourth surfaced the D-09 tail violation, fixed by quick task 260713-tmx. The process gap this section describes is closed; status is now `passed`.
+
 ---
 
 _Verified: 2026-07-13_
 _Verifier: Claude (gsd-verifier)_
+_Reconciled: 2026-07-15 against 02-HUMAN-UAT.md by /gsd-audit-uat follow-through_
