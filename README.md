@@ -41,20 +41,33 @@ agens assumes a vault with a controlled topic vocabulary and one note per source
 
 ## Status
 
-Early. This repository currently holds the project's planning documents — `PROJECT.md` and a working `config.json` — produced through a structured discussion process. Phase 0 is complete; the Skill itself has not been built yet. The v1 milestone executes in this order: 0 → 1 → 2 → 4.
+**v1.0 (MVP) shipped 2026-07-15.** The read-only spine is complete and live. The Skill at `.claude/skills/agens/SKILL.md` interrogates with a fixed questionnaire, recommends a pattern grounded in a cited vault note, delegates framework-fit questions to the host's GSD tooling, and logs each recommendation append-only in the vault's date-header convention. All 12 v1 requirements are verified; the logging was confirmed live — prompt-free write, no prior entry overwritten, a direct log-manipulation request refused, and nothing written on the delegation path.
 
 | Phase | Goal | Status |
 |---|---|---|
-| 0 | Consolidate the vault's pattern-taxonomy sources into one canonical lookup target | Complete |
-| 1 | Define the fixed questionnaire and the citation-backed recommendation format | Complete |
-| 2 | Wire delegation to existing framework-selection tooling and MCP Builder — no reimplementation | In progress |
-| 4 | Close the loop — agens logs its own decisions back into the vault | Not started |
+| 0 | Consolidate the vault's pattern-taxonomy sources into one canonical lookup target | ✅ Shipped v1.0 |
+| 1 | Fixed questionnaire and citation-backed recommendation format | ✅ Shipped v1.0 |
+| 2 | Delegate framework-fit questions to existing tooling — no reimplementation | ✅ Shipped v1.0 |
+| 4 | Append-only recommendation logging back into the vault | ✅ Shipped v1.0 |
+| 3 | agens-build — gated MCP server construction | 📋 Deferred to v2 |
 
-**Phase 3 (agens-build, the gated MCP-build capability) is deferred to v2.** It is not part of this milestone's execution order. When promoted, it inserts between Phase 2 and Phase 4, so the one write-capable path lands only after the read-only spine and the delegation mechanic have earned trust.
+**Phase 3 (agens-build, the gated MCP-build capability) is deferred to v2.** When promoted, the one write-capable path lands only after the read-only spine and the delegation mechanic have earned trust.
+
+## Install and run
+
+agens is a Claude Code Skill — no build step. It lives at `.claude/skills/agens/SKILL.md` and deploys to `~/.claude/skills/agens/`.
+
+Grant your vault as an additional directory, then invoke agens:
+
+```
+claude --add-dir "path/to/your/wiki-agents"
+```
+
+Run `/agens` explicitly, or just describe a new agent project and it auto-triggers.
 
 ### Proposed: execution-substrate guidance
 
-The vault  documents Claude Code dynamic workflows as a run-time. A future change may surface a cited substrate line in agens recommendations. agens' own machinery stays interactive and never runs as a workflow.
+The vault documents Claude Code dynamic workflows as a run-time. A future change may surface a cited substrate line in agens recommendations. agens' own machinery stays interactive and never runs as a workflow.
 
 ## Design principles
 
@@ -66,7 +79,8 @@ The vault  documents Claude Code dynamic workflows as a run-time. A future chang
 
 ## License
 
-Licenced under MIT , matching the wider Agent Skills ecosystem this project builds on.
+Licensed under the MIT licence, matching the wider Agent Skills ecosystem this project builds on.
+
 ---
 
-This project is early and opinionated, built for one person's vault first — you are welcome to clone, fork, and use this repo in your vaults.
+This project is opinionated and built for one person's vault first — you are welcome to clone, fork, and use it against your own vaults.
