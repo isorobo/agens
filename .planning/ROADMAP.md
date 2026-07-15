@@ -107,15 +107,15 @@ Plans:
 Plans:
 **Wave 1**
 
-- [ ] 04-01-PLAN.md — Wave 0 empirical Bash-grant probe (decides inline vs fallback) and the schema authored_by field
+- [x] 04-01-PLAN.md — Wave 0 empirical Bash-grant probe (decides inline vs fallback) and the schema authored_by field
 
 **Wave 2** *(blocked on Wave 1)*
 
-- [ ] 04-02-PLAN.md — Wire the scoped Bash grant, inline logging tail, D-03 refusal, and anti-patterns into SKILL.md
+- [x] 04-02-PLAN.md — Wire the scoped Bash grant, inline logging tail, D-03 refusal, and anti-patterns into SKILL.md
 
 **Wave 3** *(blocked on Wave 2)*
 
-- [ ] 04-03-PLAN.md — Redeploy to the runtime copy and human-verify live logging, refusal, delegation silence, and no-overwrite
+- [x] 04-03-PLAN.md — Redeploy to the runtime copy and human-verify live logging, refusal, delegation silence, and no-overwrite
 
 ## Deferred to v2
 
