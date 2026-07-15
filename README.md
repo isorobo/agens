@@ -54,7 +54,7 @@ Early. This repository currently holds the project's planning documents — `PRO
 
 ### Proposed: execution-substrate guidance
 
-The vault now documents Claude Code dynamic workflows as a run-time substrate. The pattern index maps the MindStudio taxonomy onto its entries. A future change may surface a cited substrate line in agens recommendations. agens' own machinery stays interactive and never runs as a workflow.
+The vault  documents Claude Code dynamic workflows as a run-time. A future change may surface a cited substrate line in agens recommendations. agens' own machinery stays interactive and never runs as a workflow.
 
 ## Design principles
 
